@@ -12,7 +12,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 public class OrderConsumer {
 
-	private static final String TOPIC_NAME = "OrderCSTopic";
+	private static final String TOPIC_NAME = "OrderPartitionedTopic";
 
 	public static void main(String[] args) {
 		Properties props = new Properties();
@@ -33,6 +33,7 @@ public class OrderConsumer {
 					System.out.println("Customer Name: " + customerName);
 					System.out.println("Product: " + order.getProduct());
 					System.out.println("Quantity: " + order.getQuantity());
+					System.out.println("Partition: " + record.partition());
 				}
 			}
 		} finally {

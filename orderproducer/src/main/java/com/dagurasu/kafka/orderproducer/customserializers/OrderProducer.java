@@ -6,15 +6,18 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
+import com.dagurasu.kafka.orderproducer.customserializers.partitioners.VIPPartitioner;
+
 public class OrderProducer {
 
-	private static final String TOPIC_NAME = "OrderCSTopic";
+	private static final String TOPIC_NAME = "OrderPartitionedTopic";
 
 	public static void main(String[] args) {
 		Properties props = new Properties();
 		props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 		props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "com.dagurasu.kafka.orderproducer.customserializers.OrderSerializer");
+		props.setProperty("partitioner.class", VIPPartitioner.class.getName());
 
 		KafkaProducer<String, Order> producer = new KafkaProducer<String, Order>(props);
 		Order order = new Order();
