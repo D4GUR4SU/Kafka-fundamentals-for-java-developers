@@ -1,4 +1,4 @@
-package com.dagurasu.kafka.clients.producer.CallBack;
+package com.dagurasu.kafka.orderproducer;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.RecordMetadata;

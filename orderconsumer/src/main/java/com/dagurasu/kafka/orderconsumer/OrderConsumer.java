@@ -11,6 +11,9 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 public class OrderConsumer {
 
+	
+	private static final String TOPIC_NAME = "OrderTopic";
+
 	public static void main(String[] args) {
 		Properties props = new Properties();
 		props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -19,7 +22,7 @@ public class OrderConsumer {
 		props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "OrderGroup");
 
 		KafkaConsumer<String, Integer> consumer = new KafkaConsumer<>(props);
-		consumer.subscribe(Collections.singletonList("OrderTopic"));
+		consumer.subscribe(Collections.singletonList(TOPIC_NAME));
 		
 		ConsumerRecords<String, Integer> orders = consumer.poll(Duration.ofSeconds(20));
 		for (ConsumerRecord<String, Integer> order : orders) {
