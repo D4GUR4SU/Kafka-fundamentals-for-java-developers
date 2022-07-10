@@ -24,14 +24,19 @@ public class OrderConsumer {
 		KafkaConsumer<String, Order> consumer = new KafkaConsumer<>(props);
 		consumer.subscribe(Collections.singletonList(TOPIC_NAME));
 
-		ConsumerRecords<String, Order> records = consumer.poll(Duration.ofSeconds(20));
-		for (ConsumerRecord<String, Order> record : records) {
-			String customerName = record.key();
-			Order order = record.value();
-			System.out.println("Customer Name: " + customerName);
-			System.out.println("Product: " + order.getProduct());
-			System.out.println("Quantity: " + order.getQuantity());
+		try {
+			while (true) {
+				ConsumerRecords<String, Order> records = consumer.poll(Duration.ofSeconds(20));
+				for (ConsumerRecord<String, Order> record : records) {
+					String customerName = record.key();
+					Order order = record.value();
+					System.out.println("Customer Name: " + customerName);
+					System.out.println("Product: " + order.getProduct());
+					System.out.println("Quantity: " + order.getQuantity());
+				}
+			}
+		} finally {
+			consumer.close();
 		}
-		consumer.close();
 	}
 }
