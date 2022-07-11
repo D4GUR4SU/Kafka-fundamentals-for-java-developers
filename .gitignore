@@ -1,1 +1,11 @@
 /.metadata/
+
+orderconsumer/.settings/
+orderconsumer/target/
+orderconsumer/.classpath
+orderconsumer/.project
+
+orderproducer/.settings/
+orderproducer/target/   
+orderproducer/.classpath
+orderproducer/.project 
