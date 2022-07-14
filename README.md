@@ -1,4 +1,4 @@
- <h1 align="center">Kafka-for-java-developers</h1>
+ <h1 align="center">Kafka-fundamentals-for-java-developers</h1>
 
 <p align="center">
     <img src="assets/logo.png">
